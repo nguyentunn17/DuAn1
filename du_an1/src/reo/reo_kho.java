@@ -5,18 +5,18 @@
 package reo;
 
 import java.util.ArrayList;
-import model.luong;
+import viewModel.kho;
 
 /**
  *
  * @author Phuong
  */
-public interface reo_luong {
-    ArrayList<luong> getAll();
+public interface reo_kho {
+    ArrayList<kho> getAll();
 
-    boolean insert(luong lg);
+    boolean insert(kho k);
 
-    boolean Update(String MaLuong, luong lg);
+    boolean Update(String MaKho, kho k);
 
-    boolean delete(String MaLuong);
+    boolean delete(String MaKho);
 }

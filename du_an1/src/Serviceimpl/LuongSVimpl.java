@@ -6,7 +6,7 @@ package Serviceimpl;
 
 import java.util.ArrayList;
 import model.luong;
-import reo.reo_luong;
+import reoImpl.reoimpl_luong;
 import service.LuongSV;
 
 /**
@@ -14,10 +14,10 @@ import service.LuongSV;
  * @author Phuong
  */
 public class LuongSVimpl  implements LuongSV{
-    public  reo_luong rluong = new reo_luong();
+    public  reoimpl_luong rluong = new reoimpl_luong();
     @Override
     public ArrayList<luong> getlist() {
-            return rluong.all();
+            return rluong.getAll();
     }
 
     @Override

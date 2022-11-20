@@ -9,7 +9,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import model.luong;
-import reo.reo_luong;
+import reoImpl.reoimpl_luong;
 import service.LuongSV;
 
 /**
