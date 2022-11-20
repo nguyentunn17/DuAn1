@@ -4,20 +4,20 @@
  */
 package view;
 
-import services.impl.LuongService;
+import Serviceimpl.LuongSVimpl;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-import domainmodels.luong;
-import repositories.impl.LuongRepository;
-import services.LuongSV;
+import model.luong;
+import reo.reo_luong;
+import service.LuongSV;
 
 /**
  *
  * @author Phuong
  */
 public class form_Luong extends javax.swing.JFrame {
-    private LuongSV lsv = new LuongService();
+    private LuongSV lsv = new LuongSVimpl();
     private DefaultTableModel defaultTableModel;
     public form_Luong() {
         initComponents();

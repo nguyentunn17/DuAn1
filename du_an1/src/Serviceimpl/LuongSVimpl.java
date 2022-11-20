@@ -2,19 +2,19 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package services.impl;
+package Serviceimpl;
 
 import java.util.ArrayList;
-import domainmodels.luong;
-import repositories.impl.LuongRepository;
-import services.LuongSV;
+import model.luong;
+import reo.reo_luong;
+import service.LuongSV;
 
 /**
  *
  * @author Phuong
  */
-public class LuongService  implements LuongSV{
-    public  LuongRepository rluong = new LuongRepository();
+public class LuongSVimpl  implements LuongSV{
+    public  reo_luong rluong = new reo_luong();
     @Override
     public ArrayList<luong> getlist() {
             return rluong.all();
