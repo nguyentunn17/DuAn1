@@ -18,9 +18,9 @@ public interface QLNVServices {
 
     void insert(NhanVien nv);
 
-    void update(int id, NhanVien nv);
+    void update(String ma, NhanVien nv);
 
-    void delete(int id);
+    void delete(String ma);
     
-    ArrayList<NhanVienVMD>listLuong();
+    ArrayList<NhanVienVMD>listViewMoDel();
 }

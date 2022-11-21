@@ -33,18 +33,18 @@ public class QLNVImpl implements QLNVServices {
     }
 
     @Override
-    public void update(int id, NhanVien nv) {
-        qLNVRepo.update(id, nv);
+    public void update(String ma, NhanVien nv) {
+        qLNVRepo.update(ma, nv);
     }
 
     @Override
-    public void delete(int id) {
-        qLNVRepo.delete(id);
+    public void delete(String ma) {
+        qLNVRepo.delete(ma);
     }
 
     @Override
-    public ArrayList<NhanVienVMD> listLuong() {
-        return qLNVRepo.listLuong();
+    public ArrayList<NhanVienVMD> listViewMoDel() {
+        return qLNVRepo.listViewMoDel();
     }
 
 }

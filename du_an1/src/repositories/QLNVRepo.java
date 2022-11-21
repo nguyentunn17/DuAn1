@@ -13,8 +13,7 @@ import java.util.logging.Logger;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.Date;
-import utilities.DBContext;
-
+import utilities.jdbcUtil;
 
 /**
  *
@@ -25,10 +24,10 @@ public class QLNVRepo {
     public ArrayList<NhanVien> listall() {
         ArrayList<NhanVien> list = new ArrayList<>();
         try {
-            Connection conn = DBContext.getConnection();
+            Connection conn = jdbcUtil.getConnection();
             String sql = "select * from nhanvien";
             PreparedStatement ps = conn.prepareStatement(sql);
-            ps.execute();
+            ps.executeQuery();
             ResultSet rs = ps.getResultSet();
             while (rs.next()) {
                 String id = rs.getString("id");
@@ -52,15 +51,15 @@ public class QLNVRepo {
 
     public void insert(NhanVien nv) {
         try {
-            Connection conn = DBContext.getConnection();
+            Connection conn = jdbcUtil.getConnection();
             String sql = "insert into nhanvien "
-                    + "(ma,ten,gioitinh,ngasinh,diachi,sdt,trangthai,anh)"
-                    + "values(?,?,?,?,?,?,?,?,?)";
+                    + "(ma,ten,gioitinh,ngaysinh,diachi,sdt,trangthai,anh)"
+                    + "values(?,?,?,?,?,?,?,?)";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, nv.getMa());
             ps.setString(2, nv.getHoTen());
             ps.setString(3, nv.getGioiTinh());
-            ps.setDate(4, (java.sql.Date) nv.getNgaySinh());
+            ps.setDate(4,new java.sql.Date(nv.getNgaySinh().getTime()));
             ps.setString(5, nv.getDiaChi());
             ps.setString(6, nv.getSdt());
             ps.setInt(7, nv.getTrangThai());
@@ -71,42 +70,42 @@ public class QLNVRepo {
         }
     }
 
-    public void update(int id, NhanVien nv) {
+    public void update(String ma, NhanVien nv) {
         try {
-            Connection conn = DBContext.getConnection();
-            String sql = "update nhanvien set ma=?,ten=?,gioitinh=?,ngasinh=?,diachi=?,sdt=?,trangthai=?,anh=? where id =?";
+            Connection conn = jdbcUtil.getConnection();
+            String sql = "update nhanvien set ten=?,gioitinh=?,ngaysinh=?,diachi=?,sdt=?,trangthai=?,anh=? where ma =?";
             PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setString(1, nv.getMa());
-            ps.setString(2, nv.getHoTen());
-            ps.setString(3, nv.getGioiTinh());
-            ps.setDate(4, (java.sql.Date) nv.getNgaySinh());
-            ps.setString(5, nv.getDiaChi());
-            ps.setString(6, nv.getSdt());
-            ps.setInt(7, nv.getTrangThai());
-            ps.setString(8, nv.getAnh());
-            ps.setInt(9, id);
+            ps.setString(1, nv.getHoTen());
+            ps.setString(2, nv.getGioiTinh());
+            ps.setDate(3, new java.sql.Date(nv.getNgaySinh().getTime()));
+            ps.setString(4, nv.getDiaChi());
+            ps.setString(5, nv.getSdt());
+            ps.setInt(6, nv.getTrangThai());
+            ps.setString(7, nv.getAnh());
+            ps.setString(8, ma);
             ps.execute();
         } catch (Exception ex) {
             ex.printStackTrace();
         }
     }
 
-    public void delete(int id) {
+    public void delete(String ma) {
         try {
-            Connection conn = DBContext.getConnection();
-            String sql = "delete nhanvien where id=?";
+            Connection conn = jdbcUtil.getConnection();
+            String sql = "delete nhanvien where ma=?";
             PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setInt(1, id);
+            ps.setString(1, ma);
+            ps.execute();
         } catch (Exception ex) {
             ex.printStackTrace();
         }
     }
 
-    public ArrayList<NhanVienVMD> listLuong() {
+    public ArrayList<NhanVienVMD> listViewMoDel() {
         ArrayList<NhanVienVMD> listView = new ArrayList<>();
         try {
-            Connection conn = DBContext.getConnection();
-            String sql = "select nhanvien.ma,ten,gioitinh,ngaysinh,diachi,sdt,matkhau,trangthai,anh,luong.mucluong from luong inner join nhanvien on luong.id=nhanvien.idluong ";
+            Connection conn = jdbcUtil.getConnection();
+            String sql = "select luong.mucluong, nhanvien.ma,nhanvien.ten,nhanvien.gioitinh,nhanvien.ngaysinh,nhanvien.diachi,nhanvien.sdt,nhanvien.trangthai,nhanvien.anh from luong inner join nhanvien on nhanvien.idluong = luong.id";
             PreparedStatement ps = conn.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
