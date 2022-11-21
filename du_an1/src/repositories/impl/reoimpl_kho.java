@@ -6,7 +6,8 @@ package repositories.impl;
 
 import java.util.ArrayList;
 import repositories.reo_kho;
-import viewmodels.kho;
+import viewModel.kho;
+
 
 /**
  *
