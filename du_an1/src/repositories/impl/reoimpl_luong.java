@@ -10,9 +10,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
-import utilities.jdbcUtil;
+import utilities.DBContext;
 import jdk.jfr.DataAmount;
 import domainmodels.luong;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import repositories.reo_luong;
 
 /**
@@ -24,7 +26,7 @@ public class reoimpl_luong implements reo_luong{
     @Override
     public ArrayList<luong> getAll() {ArrayList<luong> listluong =new ArrayList<>();
         try{
-            java.sql.Connection conn=jdbcUtil.getConnection();
+            Connection conn=DBContext.getConnection();
             String sql="select * from LUONG";
             PreparedStatement pre = conn.prepareStatement(sql);
             pre.execute();
@@ -40,13 +42,15 @@ public class reoimpl_luong implements reo_luong{
             }
         }catch(SQLException ex){
             ex.printStackTrace();
+        } catch (Exception ex) {
+            Logger.getLogger(reoimpl_luong.class.getName()).log(Level.SEVERE, null, ex);
         }
         return listluong;
     }
 
     @Override
     public boolean insert(luong lg) {try {
-            Connection conn = jdbcUtil.getConnection();
+            Connection conn=DBContext.getConnection();
             String insert = "insert into LUONG" + "(MaLuong,MucLuong,NgayQuyDinh,Phucap,Thuong)" + "Values(?,?,?,?,?)";
             PreparedStatement ps = conn.prepareStatement(insert);
             ps.setString(1, lg.getMaLuong());
@@ -64,7 +68,7 @@ public class reoimpl_luong implements reo_luong{
     @Override
     public boolean Update(String MaLuong, luong lg) {
         try {
-            Connection conn = jdbcUtil.getConnection();
+            Connection conn=DBContext.getConnection();
             String Update = "update LUONG set MucLuong=?,NgayQuyDinh=?,Phucap=?,Thuong=? Where MaLuong=?";
             PreparedStatement ps = conn.prepareStatement(Update);
             ps.setString(5, MaLuong);
@@ -82,7 +86,7 @@ public class reoimpl_luong implements reo_luong{
     @Override
     public boolean delete(String MaLuong) {
          try {
-            Connection conn = jdbcUtil.getConnection();
+            Connection conn=DBContext.getConnection();
             String delete = "delete from LUONG where MaLuong = ?";
             PreparedStatement ps = conn.prepareStatement(delete);
             ps.setString(1, MaLuong);

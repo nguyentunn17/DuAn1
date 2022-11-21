@@ -5,7 +5,7 @@
 package Service;
 
 import java.util.ArrayList;
-import viewModel.kho;
+import viewModels.kho;
 
 /**
  *

@@ -16,9 +16,9 @@ import java.util.logging.Logger;
  * @author PhongTT35
  * @description FINAL TEST SU22
  */
-class DBContext {
+public class DBContext {
     private static final String USERNAME = "sa";
-    private static final String PASSWORD = "12345";
+    private static final String PASSWORD = "123456";
     private static final String SERVER = "localhost";
     private static final String PORT = "1433";
     private static final String DATABASE_NAME = "QuanLyCuaHangTraChanh";
