@@ -2,11 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package reoImpl;
+package repositories.impl;
 
 import java.util.ArrayList;
-import reo.reo_kho;
-import viewModel.kho;
+import repositories.reo_kho;
+import viewmodels.kho;
 
 /**
  *

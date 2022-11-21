@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package reoImpl;
+package repositories.impl;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,10 +10,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
-import jdbc.jdbcUtil;
+import utilities.jdbcUtil;
 import jdk.jfr.DataAmount;
-import model.luong;
-import reo.reo_luong;
+import domainmodels.luong;
+import repositories.reo_luong;
 
 /**
  *
