@@ -1,18 +1,18 @@
+package DOMAINMODELS;
+
+
+import java.util.Date;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package DOMAINMODELS;
-
-import java.util.Date;
-
 /**
  *
  * @author Quang
  */
-public class NhanVien {
+public class NhanVienVMD {
 
-    private String id;
     private String ma;
     private String hoTen;
     private String gioiTinh;
@@ -21,13 +21,12 @@ public class NhanVien {
     private String sdt;
     private int trangThai;
     private String anh;
-    private String idLuong;
+    private double luong;
 
-    public NhanVien() {
+    public NhanVienVMD() {
     }
 
-    public NhanVien(String id, String ma, String hoTen, String gioiTinh, Date ngaySinh, String diaChi, String sdt, int trangThai, String anh, String idLuong) {
-        this.id = id;
+    public NhanVienVMD(String ma, String hoTen, String gioiTinh, Date ngaySinh, String diaChi, String sdt, int trangThai, String anh, double luong) {
         this.ma = ma;
         this.hoTen = hoTen;
         this.gioiTinh = gioiTinh;
@@ -36,15 +35,7 @@ public class NhanVien {
         this.sdt = sdt;
         this.trangThai = trangThai;
         this.anh = anh;
-        this.idLuong = idLuong;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
+        this.luong = luong;
     }
 
     public String getMa() {
@@ -111,14 +102,14 @@ public class NhanVien {
         this.anh = anh;
     }
 
-    public String getIdLuong() {
-        return idLuong;
+    public double getLuong() {
+        return luong;
     }
 
-    public void setIdLuong(String idLuong) {
-        this.idLuong = idLuong;
+    public void setLuong(double luong) {
+        this.luong = luong;
     }
 
-   
+  
     
 }

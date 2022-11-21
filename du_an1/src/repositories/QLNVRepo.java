@@ -4,15 +4,17 @@
  */
 package repositories;
 
+import DOMAINMODELS.NhanVien;
+import DOMAINMODELS.NhanVienVMD;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import model.NhanVien;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.Date;
-import viewmodel.NhanVienVMD;
+import utilities.DBContext;
+
 
 /**
  *
@@ -36,11 +38,10 @@ public class QLNVRepo {
                 Date ngaySinh = rs.getDate("ngaysinh");
                 String diaChi = rs.getString("diachi");
                 String sdt = rs.getString("sdt");
-                String matKhau = rs.getString("matkhau");
                 int trangThai = rs.getInt("trangThai");
                 String anh = rs.getString("anh");
                 String idLuong = rs.getString("idluong");
-                NhanVien nv = new NhanVien(id, ma, ten, gioiTinh, ngaySinh, diaChi, sdt, matKhau, trangThai, anh, idLuong);
+                NhanVien nv = new NhanVien(id, ma, ten, gioiTinh, ngaySinh, diaChi, sdt, trangThai, anh, idLuong);
                 list.add(nv);
             }
         } catch (Exception ex) {
@@ -53,7 +54,7 @@ public class QLNVRepo {
         try {
             Connection conn = DBContext.getConnection();
             String sql = "insert into nhanvien "
-                    + "(ma,ten,gioitinh,ngasinh,diachi,sdt,matkhau,trangthai,anh)"
+                    + "(ma,ten,gioitinh,ngasinh,diachi,sdt,trangthai,anh)"
                     + "values(?,?,?,?,?,?,?,?,?)";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, nv.getMa());
@@ -73,7 +74,7 @@ public class QLNVRepo {
     public void update(int id, NhanVien nv) {
         try {
             Connection conn = DBContext.getConnection();
-            String sql = "update nhanvien set ma=?,ten=?,gioitinh=?,ngasinh=?,diachi=?,sdt=?,matkhau=?,trangthai=?,anh=? where id =?";
+            String sql = "update nhanvien set ma=?,ten=?,gioitinh=?,ngasinh=?,diachi=?,sdt=?,trangthai=?,anh=? where id =?";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, nv.getMa());
             ps.setString(2, nv.getHoTen());
@@ -115,11 +116,10 @@ public class QLNVRepo {
                 Date ngaySinh = rs.getDate("ngaysinh");
                 String diaChi = rs.getString("diachi");
                 String sdt = rs.getString("sdt");
-                String matKhau = rs.getString("matkhau");
                 int trangThai = rs.getInt("trangThai");
                 String anh = rs.getString("anh");
                 double luong = rs.getDouble("luong");
-                NhanVienVMD nhanVienVMD = new NhanVienVMD(ma, ten, gioiTinh, ngaySinh, diaChi, sdt, matKhau, trangThai, anh, luong);
+                NhanVienVMD nhanVienVMD = new NhanVienVMD(ma, ten, gioiTinh, ngaySinh, diaChi, sdt, trangThai, anh, luong);
                 listView.add(nhanVienVMD);
             }
         } catch (Exception ex) {

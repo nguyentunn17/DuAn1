@@ -4,9 +4,9 @@
  */
 package services;
 
-import viewmodel.NhanVienVMD;
+import DOMAINMODELS.NhanVien;
+import DOMAINMODELS.NhanVienVMD;
 import java.util.ArrayList;
-import model.NhanVien;
 
 /**
  *

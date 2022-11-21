@@ -4,11 +4,11 @@
  */
 package services.impl;
 
+import DOMAINMODELS.NhanVien;
+import DOMAINMODELS.NhanVienVMD;
 import java.util.ArrayList;
-import model.NhanVien;
 import repositories.QLNVRepo;
 import services.QLNVServices;
-import viewmodel.NhanVienVMD;
 
 /**
  *
