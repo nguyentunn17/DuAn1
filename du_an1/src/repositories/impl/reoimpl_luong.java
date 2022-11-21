@@ -24,7 +24,8 @@ import repositories.reo_luong;
 public class reoimpl_luong implements reo_luong{
 
     @Override
-    public ArrayList<luong> getAll() {ArrayList<luong> listluong =new ArrayList<>();
+    public ArrayList<luong> getAll() {
+        ArrayList<luong> listluong =new ArrayList<>();
         try{
             Connection conn=DBContext.getConnection();
             String sql="select * from LUONG";
