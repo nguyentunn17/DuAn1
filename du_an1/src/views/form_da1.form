@@ -83,7 +83,7 @@
                   <Component id="jToolBar1" min="-2" pref="52" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="pn_menu" alignment="0" pref="489" max="32767" attributes="0"/>
+                      <Component id="pn_menu" alignment="0" pref="504" max="32767" attributes="0"/>
                       <Component id="pn_ban" max="32767" attributes="0"/>
                       <Component id="pn_hoadon" alignment="0" max="32767" attributes="0"/>
                   </Group>

@@ -9,7 +9,7 @@ import domainmodels.luong;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-import service.LuongSV;
+import services.LuongSV;
 
 /**
  *

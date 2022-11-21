@@ -7,7 +7,7 @@ package Service.impl;
 import domainmodels.luong;
 import java.util.ArrayList;
 import repositories.impl.reoimpl_luong;
-import service.LuongSV;
+import services.LuongSV;
 
 /**
  *
