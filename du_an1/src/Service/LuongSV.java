@@ -4,8 +4,9 @@
  */
 package service;
 
+import domainmodels.luong;
 import java.util.ArrayList;
-import model.luong;
+
 
 /**
  *
