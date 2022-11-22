@@ -543,7 +543,11 @@ public class QLNVFrame extends javax.swing.JFrame {
 
     private void lbImageMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbImageMouseClicked
         // TODO add your handling code here:
-
+//        JFileChooser fchooser = new JFileChooser();
+//        int reSult = fchooser.showOpenDialog(this);
+//        if(reSult==JFileChooser.APPROVE_OPTION){
+//            File f = fchooser.setSelectedFile(file);
+//        }
     }//GEN-LAST:event_lbImageMouseClicked
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
