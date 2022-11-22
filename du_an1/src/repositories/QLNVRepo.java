@@ -126,4 +126,33 @@ public class QLNVRepo {
         }
         return listView;
     }
+    
+    public ArrayList<NhanVien>list(String ma){
+         ArrayList<NhanVien> listSearch = new ArrayList<>();
+        try {
+            Connection conn = jdbcUtil.getConnection();
+            String sql = "select * from nhanvien where ma like ?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, ma);
+            ps.executeQuery();
+            ResultSet rs = ps.getResultSet();
+            while (rs.next()) {
+                String id = rs.getString("id");
+                String ma1 = rs.getString("ma");
+                String ten = rs.getString("ten");
+                String gioiTinh = rs.getString("gioitinh");
+                Date ngaySinh = rs.getDate("ngaysinh");
+                String diaChi = rs.getString("diachi");
+                String sdt = rs.getString("sdt");
+                int trangThai = rs.getInt("trangThai");
+                String anh = rs.getString("anh");
+                String idLuong = rs.getString("idluong");
+                NhanVien nv = new NhanVien(id, ma1, ten, gioiTinh, ngaySinh, diaChi, sdt, trangThai, anh, idLuong);
+                listSearch.add(nv);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return listSearch;
+    }
 }

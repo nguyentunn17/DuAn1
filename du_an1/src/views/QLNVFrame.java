@@ -45,6 +45,7 @@ public class QLNVFrame extends javax.swing.JFrame {
         gt();
         tt();
         loadTable();
+
     }
     ButtonGroup bt = new ButtonGroup();
     ButtonGroup bt1 = new ButtonGroup();
@@ -57,6 +58,20 @@ public class QLNVFrame extends javax.swing.JFrame {
     void tt() {
         bt1.add(rdDangLam);
         bt1.add(rdDaNghi);
+    }
+
+    void loadTableSearch(String ma) {
+        dtm = (DefaultTableModel) tbNhanVien.getModel();
+        dtm.setRowCount(0);
+        int i = 1;
+        for (NhanVien nv : qLNVServices.listSearch(ma)) {
+            Object[] row = {
+                i, nv.getMa(), nv.getHoTen(), nv.getGioiTinh(), nv.getNgaySinh(), nv.getDiaChi(),
+                nv.getSdt(), nv.getTrangThai() == 0 ? "Đang làm" : "Đã nghỉ", nv.getAnh()
+            };
+            dtm.addRow(row);
+            i++;
+        }
     }
 
     void loadTable() {
@@ -159,13 +174,14 @@ public class QLNVFrame extends javax.swing.JFrame {
         btnThem = new javax.swing.JButton();
         btnXoa = new javax.swing.JButton();
         btnSua = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        btnclear = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbNhanVien = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
         txtTimKiem = new javax.swing.JTextField();
         cbbTimkiem = new javax.swing.JComboBox<>();
+        btnTK = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(204, 255, 255));
@@ -274,10 +290,10 @@ public class QLNVFrame extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/clear.png"))); // NOI18N
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnclear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/clear.png"))); // NOI18N
+        btnclear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnclearActionPerformed(evt);
             }
         });
 
@@ -293,7 +309,7 @@ public class QLNVFrame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 99, Short.MAX_VALUE)
                 .addComponent(btnXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(111, 111, 111)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnclear, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -304,7 +320,7 @@ public class QLNVFrame extends javax.swing.JFrame {
                     .addComponent(btnThem, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btnXoa, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btnSua, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING)))
+                    .addComponent(btnclear, javax.swing.GroupLayout.Alignment.TRAILING)))
         );
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -429,7 +445,14 @@ public class QLNVFrame extends javax.swing.JFrame {
 
         jLabel3.setText("Mã nhân viên");
 
-        cbbTimkiem.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbbTimkiem.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Đang làm", "Đã nghỉ" }));
+
+        btnTK.setText("Tim Kiem");
+        btnTK.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTKActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -440,7 +463,9 @@ public class QLNVFrame extends javax.swing.JFrame {
                 .addComponent(jLabel3)
                 .addGap(18, 18, 18)
                 .addComponent(txtTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(203, 203, 203)
+                .addGap(29, 29, 29)
+                .addComponent(btnTK)
+                .addGap(99, 99, 99)
                 .addComponent(cbbTimkiem, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(154, 154, 154))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
@@ -454,7 +479,8 @@ public class QLNVFrame extends javax.swing.JFrame {
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txtTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cbbTimkiem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbbTimkiem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnTK))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE))
         );
@@ -575,11 +601,18 @@ public class QLNVFrame extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, "Xoa thanh cong");
     }//GEN-LAST:event_btnXoaActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnclearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnclearActionPerformed
         // TODO add your handling code here:
         clear();
         JOptionPane.showMessageDialog(this, "Clear Form thanh cong");
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnclearActionPerformed
+
+    private void btnTKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTKActionPerformed
+        // TODO add your handling code here:
+        NhanVien nv = new NhanVien();
+        String ma = txtTimKiem.getText().trim();
+        loadTableSearch(ma);
+    }//GEN-LAST:event_btnTKActionPerformed
     void clear() {
         txtMaNV.setText("");
         txtTenNV.setText("");
@@ -631,11 +664,12 @@ public class QLNVFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSua;
+    private javax.swing.JButton btnTK;
     private javax.swing.JButton btnThem;
     private javax.swing.JButton btnXoa;
+    private javax.swing.JButton btnclear;
     private javax.swing.JComboBox<String> cbbLuong;
     private javax.swing.JComboBox<String> cbbTimkiem;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;

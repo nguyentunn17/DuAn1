@@ -47,4 +47,9 @@ public class QLNVImpl implements QLNVServices {
         return qLNVRepo.listViewMoDel();
     }
 
+    @Override
+    public ArrayList<NhanVien> listSearch(String ma) {
+        return qLNVRepo.list(ma);
+    }
+
 }

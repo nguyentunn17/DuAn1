@@ -23,4 +23,6 @@ public interface QLNVServices {
     void delete(String ma);
     
     ArrayList<NhanVienVMD>listViewMoDel();
+    
+    ArrayList<NhanVien>listSearch(String ma);
 }
